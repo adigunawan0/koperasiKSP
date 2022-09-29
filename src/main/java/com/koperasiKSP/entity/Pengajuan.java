@@ -12,9 +12,9 @@ public class Pengajuan {
     @Column(name = "Id", nullable = false)
     private Long id;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "Username")
-    private Account username;
+    private Account account;
 
     @Column(name = "Nominal", nullable = false, precision = 19, scale = 2)
     private BigDecimal nominal;
@@ -30,9 +30,17 @@ public class Pengajuan {
 
     public Pengajuan() {
     }
-    public Pengajuan(Long id, Account username, BigDecimal nominal, String keterangan, LocalDate startDate, LocalDate endDate) {
+    public Pengajuan(Long id, Account account, BigDecimal nominal, String keterangan, LocalDate startDate, LocalDate endDate) {
         this.id = id;
-        this.username = username;
+        this.account = account;
+        this.nominal = nominal;
+        this.keterangan = keterangan;
+        this.startDate = startDate;
+        this.endDate = endDate;
+    }
+
+    public Pengajuan(Account account, BigDecimal nominal, String keterangan, LocalDate startDate, LocalDate endDate) {
+        this.account = account;
         this.nominal = nominal;
         this.keterangan = keterangan;
         this.startDate = startDate;
@@ -71,12 +79,12 @@ public class Pengajuan {
         this.nominal = nominal;
     }
 
-    public Account getUsername() {
-        return username;
+    public Account getAccount() {
+        return account;
     }
 
-    public void setUsername(Account username) {
-        this.username = username;
+    public void setAccount(Account account) {
+        this.account = account;
     }
 
     public Long getId() {

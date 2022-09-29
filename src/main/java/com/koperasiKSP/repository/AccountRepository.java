@@ -10,7 +10,14 @@ public interface AccountRepository extends JpaRepository<Account, String> {
     @Query("""
             SELECT COUNT(*)
             FROM Account
-            WHERE Account.username = :email
+            WHERE Account.account = :email
             """)
     Long countByEmail(@Param("email") String email);
+
+    @Query("""
+            SELECT ac
+            FROM Account AS ac
+            WHERE ac.nama = :nama
+            """)
+    Account findByName(@Param("nama") String nama);
 }
