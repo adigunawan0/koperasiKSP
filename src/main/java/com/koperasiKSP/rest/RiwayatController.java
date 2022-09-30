@@ -23,7 +23,7 @@ public class RiwayatController {
         return new ResponseEntity<>("Riwayat berhasil dibuat", HttpStatus.CREATED);
     }
 
-    @DeleteMapping
+    @DeleteMapping("/{id}")
     public ResponseEntity<String> delete(@PathVariable Long id){
         try {
             riwayatService.deleteById(id);
@@ -44,6 +44,7 @@ public class RiwayatController {
         }
     }
 
+    @GetMapping
     public ResponseEntity<Page<RiwayatDTO>> index(@RequestParam(defaultValue = "1") int page,
                                                   @RequestParam(defaultValue = "") String username,
                                                   @RequestParam(defaultValue = "") String nama){

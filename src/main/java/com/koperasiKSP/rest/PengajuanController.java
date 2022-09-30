@@ -3,7 +3,6 @@ package com.koperasiKSP.rest;
 import com.koperasiKSP.dto.pengajuan.InsertPengajuanDTO;
 import com.koperasiKSP.dto.pengajuan.PengajuanDTO;
 import com.koperasiKSP.dto.pengajuan.UpdatePengajuanDTO;
-import com.koperasiKSP.entity.Pengajuan;
 import com.koperasiKSP.service.PengajuanService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
