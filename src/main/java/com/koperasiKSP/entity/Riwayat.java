@@ -13,7 +13,7 @@ public class Riwayat {
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "PengajuanId")
-    private Pengajuan pengajuanId;
+    private Pengajuan pengajuan;
 
     @Column(name = "Keterangan", nullable = false)
     private String keterangan;
@@ -23,9 +23,14 @@ public class Riwayat {
 
     public Riwayat() {
     }
-    public Riwayat(Long id, Pengajuan pengajuanId, String keterangan, LocalDate tanggal) {
+    public Riwayat(Long id, Pengajuan pengajuan, String keterangan, LocalDate tanggal) {
         this.id = id;
-        this.pengajuanId = pengajuanId;
+        this.pengajuan = pengajuan;
+        this.keterangan = keterangan;
+        this.tanggal = tanggal;
+    }
+    public Riwayat(Pengajuan pengajuan, String keterangan, LocalDate tanggal) {
+        this.pengajuan = pengajuan;
         this.keterangan = keterangan;
         this.tanggal = tanggal;
     }
@@ -46,12 +51,12 @@ public class Riwayat {
         this.keterangan = keterangan;
     }
 
-    public Pengajuan getPengajuanId() {
-        return pengajuanId;
+    public Pengajuan getPengajuan() {
+        return pengajuan;
     }
 
-    public void setPengajuanId(Pengajuan pengajuanId) {
-        this.pengajuanId = pengajuanId;
+    public void setPengajuan(Pengajuan pengajuan) {
+        this.pengajuan = pengajuan;
     }
 
     public Long getId() {
