@@ -42,10 +42,15 @@ public class PengajuanController {
 
     // Grant Access: Admin
     @PutMapping("/{id}")
-    public ResponseEntity<String> update(@Valid @RequestBody UpdatePengajuanDTO dto,
+    public ResponseEntity<String> update(@RequestBody UpdatePengajuanDTO dto,
                                          @PathVariable Long id){
-        pengajuanService.update(id, dto);
-        return new ResponseEntity<>("Pengajuan berhasil diupdate!", HttpStatus.ACCEPTED);
+        try{
+            pengajuanService.update(id, dto);
+            return new ResponseEntity<>("Pengajuan berhasil diupdate!", HttpStatus.ACCEPTED);
+        }
+        catch (Exception ex){
+            return new ResponseEntity<>("Pengajuan tidak ditemukan", HttpStatus.NOT_FOUND);
+        }
     }
 
     // Grant Access: Admin can get All, Member using principal as username parameter
