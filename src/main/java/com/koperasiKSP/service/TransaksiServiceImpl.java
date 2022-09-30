@@ -1,6 +1,9 @@
 package com.koperasiKSP.service;
 
+import com.koperasiKSP.dto.transaksi.InsertTransaksiDTO;
+import com.koperasiKSP.entity.Pengajuan;
 import com.koperasiKSP.entity.Transaksi;
+import com.koperasiKSP.repository.PengajuanRepository;
 import com.koperasiKSP.repository.TransaksiRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,6 +16,9 @@ public class TransaksiServiceImpl implements TransaksiService{
 
     @Autowired
     private TransaksiRepository transaksiRepository;
+
+    @Autowired
+    private PengajuanRepository pengajuanRepository;
 
 
     @Override
@@ -40,5 +46,16 @@ public class TransaksiServiceImpl implements TransaksiService{
     public void deleteById(Long id) {
         Transaksi entity = findById(id);
         transaksiRepository.delete(entity);
+    }
+
+    @Override
+    public void insert(InsertTransaksiDTO dto) {
+        Optional<Pengajuan> entity = pengajuanRepository.findById(dto.getPengajuanIdId());
+        save(new Transaksi(
+                entity.orElse(null),
+                dto.getNominal(),
+                dto.getKeterangan(),
+                dto.getTanggal()
+        ));
     }
 }

@@ -1,5 +1,6 @@
 package com.koperasiKSP.service;
 
+import com.koperasiKSP.dto.transaksi.InsertTransaksiDTO;
 import com.koperasiKSP.entity.Transaksi;
 
 import java.util.List;
@@ -10,4 +11,6 @@ public interface TransaksiService {
     void save(Transaksi transaksi);
     void delete(Transaksi transaksi);
     void deleteById(Long id);
+
+    void insert(InsertTransaksiDTO dto);
 }

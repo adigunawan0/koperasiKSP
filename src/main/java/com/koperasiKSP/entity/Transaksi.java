@@ -25,6 +25,15 @@ public class Transaksi {
     @Column(name = "Tanggal", nullable = false)
     private LocalDate tanggal;
 
+    public Transaksi() {
+    }
+    public Transaksi(Pengajuan pengajuanId, BigDecimal nominal, String keterangan, LocalDate tanggal) {
+        this.pengajuanId = pengajuanId;
+        this.nominal = nominal;
+        this.keterangan = keterangan;
+        this.tanggal = tanggal;
+    }
+
     public LocalDate getTanggal() {
         return tanggal;
     }
