@@ -2,6 +2,7 @@ package com.koperasiKSP.service;
 
 import com.koperasiKSP.dto.account.RegisterDTO;
 import com.koperasiKSP.entity.Account;
+import org.springframework.data.domain.Page;
 
 import java.util.List;
 
@@ -17,4 +18,8 @@ public interface AccountService {
     boolean isExistByUsername(String username);
 
     boolean isExistByEmail(String email);
+
+    String getAccountRole(String username);
+
+    Page<Account> getDTOPages(String username, String nama, int page);
 }

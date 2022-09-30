@@ -1,19 +1,31 @@
 package com.koperasiKSP.service;
 
+import com.koperasiKSP.ApplicationUserDetails;
 import com.koperasiKSP.dto.account.RegisterDTO;
 import com.koperasiKSP.entity.Account;
 import com.koperasiKSP.repository.AccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
 @Service
-public class AccountServiceImpl implements AccountService{
+public class AccountServiceImpl implements AccountService, UserDetailsService {
 
     @Autowired
     private AccountRepository accountRepository;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @Override
     public List<Account> findAll() {
@@ -44,10 +56,10 @@ public class AccountServiceImpl implements AccountService{
 
     @Override
     public void register(RegisterDTO dto) {
-        // register account tanpa hashing BCrypt dengan role Member
+        String hashPassword = passwordEncoder.encode(dto.getPassword());
         save(new Account(
                 dto.getUsername(),
-                dto.getPassword(),
+                hashPassword,
                 dto.getRole(),
                 dto.getName(),
                 dto.getAddress(),
@@ -65,5 +77,21 @@ public class AccountServiceImpl implements AccountService{
     public boolean isExistByEmail(String email) {
         Long countByEmail = accountRepository.countByEmail(email);
         return countByEmail > 0;
+    }
+
+    @Override
+    public String getAccountRole(String username) {
+        return findByUsername(username).getRole();
+    }
+
+    @Override
+    public Page<Account> getDTOPages(String username, String nama, int page) {
+        Pageable pageable = PageRequest.of(page-1, 3, Sort.by("username"));
+        return accountRepository.getDTOPages(username, nama, pageable);
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        return new ApplicationUserDetails(findByUsername(username));
     }
 }

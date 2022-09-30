@@ -28,6 +28,8 @@ public class RegisterDTO{
     @Email(message = "format email salah")
     private final String email;
     private final String role = "Member";
+    private final String SECRET_KEY;
+    private final String audience;
 
     public RegisterDTO(String username, String password, String name, String address, String email) {
         this.username = username;
@@ -35,6 +37,8 @@ public class RegisterDTO{
         this.name = name;
         this.address = address;
         this.email = email;
+        this.SECRET_KEY = "liberate-tutuma-ex-inferis-ad-astra-per-aspera";
+        this.audience = "KoperasiKSP";
     }
 
     public String getUsername() {
@@ -59,5 +63,13 @@ public class RegisterDTO{
 
     public String getRole() {
         return role;
+    }
+
+    public String getSECRET_KEY() {
+        return SECRET_KEY;
+    }
+
+    public String getAudience() {
+        return audience;
     }
 }
