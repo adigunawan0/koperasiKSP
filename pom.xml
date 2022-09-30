@@ -11,7 +11,7 @@
 	<groupId>com.</groupId>
 	<artifactId>koperasiKSP</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<nama>koperasiKSP</nama>
+	<name>koperasiKSP</name>
 	<description>Mini Project Spring Boot Koperasi KSP</description>
 	<properties>
 		<java.version>17</java.version>

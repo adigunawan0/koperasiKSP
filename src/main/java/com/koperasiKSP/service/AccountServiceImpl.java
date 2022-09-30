@@ -44,7 +44,15 @@ public class AccountServiceImpl implements AccountService{
 
     @Override
     public void register(RegisterDTO dto) {
-        // register account
+        // register account tanpa hashing BCrypt dengan role Member
+        save(new Account(
+                dto.getUsername(),
+                dto.getPassword(),
+                "Member",
+                dto.getName(),
+                dto.getAddress(),
+                dto.getEmail()
+        ));
     }
 
     @Override
