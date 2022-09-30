@@ -14,7 +14,7 @@ public class Transaksi {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "PengajuanId")
-    private Pengajuan pengajuanId;
+    private Pengajuan pengajuan;
 
     @Column(name = "Nominal", nullable = false, precision = 19, scale = 2)
     private BigDecimal nominal;
@@ -27,8 +27,8 @@ public class Transaksi {
 
     public Transaksi() {
     }
-    public Transaksi(Pengajuan pengajuanId, BigDecimal nominal, String keterangan, LocalDate tanggal) {
-        this.pengajuanId = pengajuanId;
+    public Transaksi(Pengajuan pengajuan, BigDecimal nominal, String keterangan, LocalDate tanggal) {
+        this.pengajuan = pengajuan;
         this.nominal = nominal;
         this.keterangan = keterangan;
         this.tanggal = tanggal;
@@ -58,12 +58,12 @@ public class Transaksi {
         this.nominal = nominal;
     }
 
-    public Pengajuan getPengajuanId() {
-        return pengajuanId;
+    public Pengajuan getPengajuan() {
+        return pengajuan;
     }
 
-    public void setPengajuanId(Pengajuan pengajuanId) {
-        this.pengajuanId = pengajuanId;
+    public void setPengajuan(Pengajuan pengajuan) {
+        this.pengajuan = pengajuan;
     }
 
     public Long getId() {

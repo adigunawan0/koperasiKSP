@@ -1,26 +1,31 @@
 package com.koperasiKSP.dto.transaksi;
 
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-public class InsertTransaksiDTO{
-    @NotNull(message = "Id Pengajuan tidak boleh null")
+public class TransaksiDTO{
+    private final Long id;
+    private final String name;
     private final Long pengajuanId;
-
-    @NotNull(message = "Nominal tidak boleh null")
     private final BigDecimal nominal;
-
-    @NotBlank(message = "Keterangan tidak boleh null")
     private final String keterangan;
     private final LocalDate tanggal;
 
-    public InsertTransaksiDTO(Long pengajuanId, BigDecimal nominal, String keterangan) {
+    public TransaksiDTO(Long id, String name, Long pengajuanId, BigDecimal nominal, String keterangan, LocalDate tanggal) {
+        this.id = id;
+        this.name = name;
         this.pengajuanId = pengajuanId;
         this.nominal = nominal;
         this.keterangan = keterangan;
         this.tanggal = LocalDate.now();
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public Long getPengajuanId() {
