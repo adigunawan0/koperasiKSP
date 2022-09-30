@@ -1,6 +1,7 @@
 package com.koperasiKSP.rest;
 
 import com.koperasiKSP.dto.pengajuan.InsertPengajuanDTO;
+import com.koperasiKSP.dto.pengajuan.PengajuanDTO;
 import com.koperasiKSP.dto.pengajuan.UpdatePengajuanDTO;
 import com.koperasiKSP.entity.Pengajuan;
 import com.koperasiKSP.service.PengajuanService;
@@ -45,6 +46,15 @@ public class PengajuanController {
                                          @PathVariable Long id){
         pengajuanService.update(id, dto);
         return new ResponseEntity<>("Pengajuan berhasil diupdate!", HttpStatus.ACCEPTED);
+    }
+
+    // Grant Access: Any
+    @GetMapping
+    public ResponseEntity<Page<PengajuanDTO>> index(@RequestParam(defaultValue = "1") int page,
+                                                    @RequestParam(defaultValue = "") String username,
+                                                    @RequestParam(defaultValue = "") String nama){
+        Page<PengajuanDTO> pengajuanPage = pengajuanService.findPages(username, nama, page);
+        return new ResponseEntity<>(pengajuanPage, HttpStatus.OK);
     }
 
 }

@@ -1,12 +1,17 @@
 package com.koperasiKSP.service;
 
 import com.koperasiKSP.dto.pengajuan.InsertPengajuanDTO;
+import com.koperasiKSP.dto.pengajuan.PengajuanDTO;
 import com.koperasiKSP.dto.pengajuan.UpdatePengajuanDTO;
 import com.koperasiKSP.entity.Account;
 import com.koperasiKSP.entity.Pengajuan;
 import com.koperasiKSP.repository.AccountRepository;
 import com.koperasiKSP.repository.PengajuanRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -73,5 +78,11 @@ public class PengajuanServiceImpl implements PengajuanService{
         }
 
         save(pengajuan);
+    }
+
+    @Override
+    public Page<PengajuanDTO> findPages(String username, String nama, int page) {
+        Pageable pageable = PageRequest.of(page-1, 3, Sort.by("name"));
+        return pengajuanRepository.getDTOpages(username, nama, pageable);
     }
 }
