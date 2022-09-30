@@ -82,7 +82,7 @@ public class PengajuanServiceImpl implements PengajuanService{
 
     @Override
     public Page<PengajuanDTO> findPages(String username, String nama, int page) {
-        Pageable pageable = PageRequest.of(page-1, 3, Sort.by("name"));
+        Pageable pageable = PageRequest.of(page-1, 3, Sort.by("id"));
         return pengajuanRepository.getDTOpages(username, nama, pageable);
     }
 }

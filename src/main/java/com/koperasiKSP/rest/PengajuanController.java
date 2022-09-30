@@ -48,7 +48,7 @@ public class PengajuanController {
         return new ResponseEntity<>("Pengajuan berhasil diupdate!", HttpStatus.ACCEPTED);
     }
 
-    // Grant Access: Any
+    // Grant Access: Admin can get All, Member using principal as username parameter
     @GetMapping
     public ResponseEntity<Page<PengajuanDTO>> index(@RequestParam(defaultValue = "1") int page,
                                                     @RequestParam(defaultValue = "") String username,

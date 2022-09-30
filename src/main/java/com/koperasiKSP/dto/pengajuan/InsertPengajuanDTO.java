@@ -17,7 +17,7 @@ public class InsertPengajuanDTO {
     @NotBlank(message = "Keterangan tidak boleh kosong")
     private final String keterangan;
 
-    @NotBlank(message = "Durasi tidak boleh kosong")
+    @NotNull(message = "Durasi tidak boleh kosong")
     private final int durasi;
 
     public InsertPengajuanDTO(String nama, BigDecimal nominal, String keterangan, int durasi) {

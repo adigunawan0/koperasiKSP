@@ -48,7 +48,7 @@ public class AccountServiceImpl implements AccountService{
         save(new Account(
                 dto.getUsername(),
                 dto.getPassword(),
-                "Member",
+                dto.getRole(),
                 dto.getName(),
                 dto.getAddress(),
                 dto.getEmail()

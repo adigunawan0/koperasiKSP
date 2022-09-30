@@ -15,7 +15,8 @@ public interface PengajuanRepository extends JpaRepository<Pengajuan, Long> {
             FROM Pengajuan AS pen
                 JOIN pen.account AS ac
             WHERE ac.username LIKE %:username%
-                AND ac.name LIKE %:nama%""")
+                AND ac.name LIKE %:nama%
+                """)
     Page<PengajuanDTO> getDTOpages(@Param("username") String username,
                                    @Param("nama") String nama,
                                    Pageable pageable);
